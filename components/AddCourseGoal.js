@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Button,
   Modal,
@@ -7,7 +8,8 @@ import {
   Image,
 } from "react-native";
 
-export default function AddCourseGoal({ visible, setVisible }) {
+export default function AddCourseGoal({ visible, setVisible, handleAddGoal }) {
+  const [goal, setGoal] = useState("");
   return (
     <Modal visible={visible} animationType="slide">
       <View style={styles.container}>
@@ -15,7 +17,11 @@ export default function AddCourseGoal({ visible, setVisible }) {
           style={styles.goalImage}
           source={require("../assets/images/goal.png")}
         />
-        <TextInput style={styles.textInput} placeholder="Your course goal" />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Your course goal"
+          onChangeText={(text) => setGoal(text)}
+        />
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
             <Button
@@ -25,7 +31,7 @@ export default function AddCourseGoal({ visible, setVisible }) {
             />
           </View>
           <View style={styles.button}>
-            <Button title="Add Goal" />
+            <Button title="Add Goal" onPress={() => handleAddGoal(goal)} />
           </View>
         </View>
       </View>
