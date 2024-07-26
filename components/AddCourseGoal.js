@@ -7,9 +7,9 @@ import {
   Image,
 } from "react-native";
 
-export default function AddCourseGoal() {
+export default function AddCourseGoal({ visible, setVisible }) {
   return (
-    <Modal>
+    <Modal visible={visible} animationType="slide">
       <View style={styles.container}>
         <Image
           style={styles.goalImage}
@@ -18,7 +18,11 @@ export default function AddCourseGoal() {
         <TextInput style={styles.textInput} placeholder="Your course goal" />
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
-            <Button title="Cancel" color={"orange"} />
+            <Button
+              title="Cancel"
+              color={"orange"}
+              onPress={() => setVisible(false)}
+            />
           </View>
           <View style={styles.button}>
             <Button title="Add Goal" />
@@ -46,7 +50,7 @@ const styles = StyleSheet.create({
     borderColor: "#cccccc",
     borderWidth: 1,
     width: "100%",
-    padding:8
+    padding: 8,
   },
   buttonContainer: {
     flexDirection: "row",
